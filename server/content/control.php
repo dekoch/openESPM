@@ -16,8 +16,6 @@
 		<div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
 				<?php
-
-					$devices = list_devices();
 					//print devices
 					foreach($devices as $dev)
 					{
@@ -32,9 +30,12 @@
 			<?php
 				if($id != '')
 				{
-					echo '<h3 class="page-header">'.$obj->name.' (ID: '.$obj->id.')</h3>';
-					echo '<!-- app/'.$obj->app.'/control.php -->';
-					include 'app/'.$obj->app.'/control.php';
+					if(is_dir('devices/'.$id))
+					{
+						echo '<h3 class="page-header">'.$obj->name.' (ID: '.$obj->id.')</h3>';
+						echo '<!-- app/'.$obj->app.'/control.php -->';
+						include 'app/'.$obj->app.'/control.php';
+					}
 				}
 			?>
 		</div>

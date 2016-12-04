@@ -18,7 +18,7 @@
 
 		// load new settings
 		$_SESSION['serverini'] = '';
-		header("Refresh:0");
+		$_SESSION['refresh'] = true;
 	}
 
 	if($_POST['resetpwd'] == 'true')

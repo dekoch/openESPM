@@ -66,7 +66,6 @@ Devices:</br>
 
 <?php
 
-	$devices = list_devices();
 	//print devices
 	foreach($devices as $dev)
 	{

@@ -45,7 +45,7 @@
 	{
 		//path to directory to scan
 		$directory = 'devices/';
-		 
+ 
 		//get all files in specified directory
 		$dirs = glob($directory . '*');
 
@@ -133,6 +133,27 @@
 		$ini['lastseen'] = $date['0'];
 
 		write_php_ini($ini, 'devices/'.$id.'/info.ini.php');
+	}
+
+
+	function get_layout($width)
+	{
+		if($width < 768)
+		{
+			return 'xs';
+		}
+		else if($width <= 991)
+		{
+			return 'sm';
+		}
+		else if($width <= 1199)
+		{
+			return 'md';
+		}
+		else
+		{
+			return 'ld';
+		}
 	}
 
 ?>

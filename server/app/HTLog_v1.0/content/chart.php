@@ -9,8 +9,12 @@
 		$chartTime = '';
 		$chartTemp = '';
 		$lastTemp = 0;
+		$averageTemp = 0;
 		$chartHumidity = '';
 		$lastHumidity = 0;
+		$averageHumidity = 0;
+
+		$cnt = 0;
 
 		foreach ($array as $set)
 		{
@@ -31,13 +35,37 @@
 
 				$chartHumidity = $chartHumidity.$set[3].',';
 				$lastHumidity = $set[3];
-			}
+
+
+				$averageTemp += $lastTemp;
+				$averageHumidity += $lastHumidity;
+
+				$cnt += 1;
+			}	
 		}
+
+		$averageTemp = round($averageTemp / $cnt, 2);
+		$averageHumidity = round($averageHumidity / $cnt, 2);
 
 		// remove last ;
 		$chartTime = substr($chartTime, 0, strlen($chartTime) - 1);
 		$chartTemp = substr($chartTemp, 0, strlen($chartTemp) - 1);
 		$chartHumidity = substr($chartHumidity, 0, strlen($chartHumidity) - 1);
+	}
+
+
+	$width = 0;
+
+	if(!empty($_SESSION['width'])) 
+	{
+		if(get_layout($_SESSION['width']) == 'xs')
+		{
+			$width = $_SESSION['width'];
+		}
+		else
+		{
+			$width = $_SESSION['width'] / 100 * 80;
+		}
 	}
 
 ?>
@@ -56,7 +84,15 @@
 
 	var charJSPersonnalDefaultOptions = { decimalSeparator : "," , thousandSeparator : ".", roundNumber : "none", graphTitleFontSize: 2 };
 
-	defCanvasWidth=document.documentElement.clientWidth / 100 * 80;
+
+	if(<?php echo$width; ?>	== 0)
+	{
+		defCanvasWidth=document.documentElement.clientWidth / 100 * 80;
+	}
+	else
+	{
+		defCanvasWidth=<?php echo$width; ?>;
+	}
 	defCanvasHeight=300;
 
 
@@ -98,7 +134,7 @@
 		canvasBorders : false,
 		canvasBordersWidth : 3,
 		canvasBordersColor : "black",
-		graphTitle : "<?php echo $lastTemp.' '.$appini['tempunit']; ?>",
+		graphTitle : "<?php echo $lastTemp.' (avg '.$averageTemp.') '.$appini['tempunit']; ?>",
 		legend : true,
 		inGraphDataShow : false,
 		annotateDisplay : true,
@@ -112,7 +148,7 @@
 		canvasBorders : false,
 		canvasBordersWidth : 3,
 		canvasBordersColor : "black",
-		graphTitle : "<?php echo $lastHumidity; ?> %RH",
+		graphTitle : "<?php echo $lastHumidity.' (avg '.$averageHumidity.')'; ?> %RH",
 		legend : true,
 		inGraphDataShow : false,
 		annotateDisplay : true,
