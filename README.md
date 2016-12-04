@@ -9,7 +9,7 @@ open-source Manager for IoT Devices
 * set file permissions to 777 (folders: "config", "devices", "log")
 
 ### Demo
-[http://github.m-webspace.de/openespm/?page=control&id=5834634841d2e](http://github.m-webspace.de/openespm/?page=control&id=5834634841d2e)
+[http://github.m-webspace.de/openespm/?page=control&id=583afcfbc53e9](http://github.m-webspace.de/openespm/?page=control&id=583afcfbc53e9)
 
 ### Screenshot
 ![](https://raw.githubusercontent.com/dekoch/openESPM/wiki/img/openESPM_control_HTLog.png)
