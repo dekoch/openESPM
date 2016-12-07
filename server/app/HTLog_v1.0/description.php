@@ -16,6 +16,8 @@
 
 	$appUrl = '';
 
-	$appChangelog = 'v1.0 - first version';
+	$appChangelog = 'v1.0.1<br>+show min. avg. max.<br>+check user and device input values<br>
+					<br>
+					v1.0<br>first version';
 
 ?>

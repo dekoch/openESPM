@@ -2,7 +2,9 @@
 
 	if($_POST['settingsapply'] == 'true')
 	{
-		$serverini['servername'] = $_POST['name'];
+		$serverini = parse_ini_file('config/server.ini.php');
+
+		$serverini['servername'] = htmlspecialchars($_POST['name']);
 		//$serverini['language'] = $_POST['lang'];
 		$serverini['logrequest'] = $_POST['enablereq'];
 		$serverini['timezone'] = $_POST['timezone'];
@@ -23,8 +25,12 @@
 
 	if($_POST['resetpwd'] == 'true')
 	{
+		$serverini = parse_ini_file('config/server.ini.php');
+
 		$serverini['hash'] = '';
+
 		write_php_ini($serverini, 'config/server.ini.php');
+
 		// load new settings
 		$_SESSION['serverini'] = '';
 	}

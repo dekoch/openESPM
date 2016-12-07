@@ -17,6 +17,11 @@
 		$contentPath = $contentPath.'applications.php';
 		$contentTitle = 'Applications';
 	}
+	else if($content == 'about')
+	{
+		$contentPath = $contentPath.'about.php';
+		$contentTitle = 'About';
+	}
 	else
 	{  
 		$contentPath = $contentPath.'devices.php';
@@ -32,6 +37,7 @@
 				<li><a href="?content=devices" title="">Devices</a></li>
 				<li><a href="?content=applications" title="">Applications</a></li>
 				<li><a href="?content=server" title="">Server</a></li>
+				<li><a href="?content=about" title="">About</a></li>
 			</ul> 
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

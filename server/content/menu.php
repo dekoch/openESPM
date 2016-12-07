@@ -38,6 +38,7 @@
 						<li><a href="?page=settings&content=devices" title="">Devices</a></li>
 						<li><a href="?page=settings&content=applications" title="">Applications</a></li>
 						<li><a href="?page=settings&content=server" title="">Server</a></li>
+						<li><a href="?page=settings&content=about" title="">About</a></li>
 					</ul>
 				</li>
 				<li><a href="?menu=logout" title="">Logout</a></li>

@@ -22,7 +22,6 @@
 						echo '<li><a href="?id='.$dev->id.'" title=""><b>'.$dev->name.'</b> '.$dev->app.'<br>'.
 								'(ID: '.$dev->id.')</a></li>';
 					}
-
 				?>
 			</ul> 
 		</div>
