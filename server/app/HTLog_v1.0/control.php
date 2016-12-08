@@ -21,7 +21,6 @@
 
 ?>
 
-Settings:
 <form action="" method="post">
 	<input type="date" name="date" value="<?php echo $_SESSION['selecteddate']; ?>" />
 	<button type="submit" name="show" value="true" class="btn btn-success">show</button>

@@ -19,8 +19,13 @@
 					//print devices
 					foreach($devices as $dev)
 					{
-						echo '<li><a href="?id='.$dev->id.'" title=""><b>'.$dev->name.'</b> '.$dev->app.'<br>'.
-								'(ID: '.$dev->id.')</a></li>';
+						$pos = strpos($dev->app, 'API');
+						// don't list API devices
+						if ($pos === false)
+						{
+							echo '<li><a href="?id='.$dev->id.'" title=""><b>'.$dev->name.'</b> '.$dev->app.'<br>'.
+									'(ID: '.$dev->id.')</a></li>';
+						}
 					}
 				?>
 			</ul> 
@@ -31,9 +36,14 @@
 				{
 					if(is_dir('devices/'.$id))
 					{
-						echo '<h3 class="page-header">'.$obj->name.' (ID: '.$obj->id.')</h3>';
-						echo '<!-- app/'.$obj->app.'/control.php -->';
-						include 'app/'.$obj->app.'/control.php';
+						$pos = strpos($obj->app, 'API');
+						// don't show API devices
+						if ($pos === false)
+						{
+							echo '<h3 class="page-header">'.$obj->name.' (ID: '.$obj->id.')</h3>';
+							echo '<!-- app/'.$obj->app.'/control.php -->';
+							include 'app/'.$obj->app.'/control.php';
+						}
 					}
 				}
 			?>
