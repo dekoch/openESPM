@@ -2,7 +2,7 @@
 
 	$error = '';
 
-	for ($i = 0; $i <= 4; $i++)
+	for ($i = 0; $i <= 5; $i++)
 	{
 		if($error == '')
 		{
@@ -23,6 +23,13 @@
 					break;
 
 				case 2:
+					if($appini['device'] == '')
+					{
+						$error = 'No device mapped';
+					}
+					break;
+
+				case 3:
 				  	// check device app
 					$objdev = new struDevice();
 					$objdev = get_device_info($appini['device']);
@@ -33,7 +40,7 @@
 					}
 					break;
 
-				case 3:
+				case 4:
 					// search latest CSV
 					$date = getdate();
 					$unixtime = $date['0'];
@@ -52,7 +59,7 @@
 					}
 					break;
 
-				case 4:
+				case 5:
 					// output
 					include_once './functions/csv.php';
 

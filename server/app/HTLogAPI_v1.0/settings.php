@@ -8,10 +8,7 @@
 
 		if($_POST['apply'] == 'true')
 		{
-			if($_POST['selecedDevice'] != '')
-			{
-				$appini['device'] = $_POST['selecedDevice'];
-			}
+			$appini['device'] = $_POST['selecedDevice'];
 
 			write_php_ini($appini, $appinipath);
 		}
@@ -23,11 +20,17 @@ Settings:
 <form action="" method="post">
 	Device mapping: <select id="cmbDevices" name="selecedDevice" >
 						<?php
+							echo '<option value="" ';
+							if($appini['device'] == '')
+							{
+								echo 'selected';
+							}
+							echo '></option>';
+
 							foreach($devices as $dev)
 							{
-								$pos = strpos($dev->app, 'API');
-								// don't list API devices
-								if ($pos === false)
+								// list compatible devices
+								if(strlen(stristr($dev->app, 'HTLog_v1.0')) > 0)
 								{
 									echo '<option value="'.$dev->id.'" ';
 									if($appini['device'] == $dev->id)
