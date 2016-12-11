@@ -80,21 +80,6 @@
 		$chartHumidity = substr($chartHumidity, 0, strlen($chartHumidity) - 1);
 	}
 
-
-	$width = 0;
-
-	if(!empty($_SESSION['width'])) 
-	{
-		if(get_layout($_SESSION['width']) == 'xs')
-		{
-			$width = $_SESSION['width'];
-		}
-		else
-		{
-			$width = $_SESSION['width'] / 100 * 80;
-		}
-	}
-
 ?>
 
 
@@ -112,14 +97,15 @@
 	var charJSPersonnalDefaultOptions = { decimalSeparator : "," , thousandSeparator : ".", roundNumber : "none", graphTitleFontSize: 2 };
 
 
-	if(<?php echo$width; ?>	== 0)
+	if("<?php echo get_layout($_SESSION['width']); ?>" == "xs")
 	{
-		defCanvasWidth=document.documentElement.clientWidth / 100 * 80;
+		defCanvasWidth=document.documentElement.clientWidth;
 	}
 	else
 	{
-		defCanvasWidth=<?php echo$width; ?>;
+		defCanvasWidth=document.documentElement.clientWidth / 100 * 80;
 	}
+
 	defCanvasHeight=300;
 
 

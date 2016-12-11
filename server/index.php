@@ -187,7 +187,7 @@
 	{
 		$_SESSION['refresh'] = false;
 
-		echo "<meta http-equiv='refresh' content='0'>";
+		echo '<meta http-equiv="refresh" content="0">';
 	}
 
 ?>
