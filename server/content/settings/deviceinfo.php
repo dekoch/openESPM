@@ -5,28 +5,24 @@
 		$obj = new struDevice();
 		$obj = get_device_info($id);
 
+		$deviceini = parse_ini_file('devices/'.$id.'/info.ini.php');
 
 		if($_POST['rename'] == 'true')
 		{
 			if($_POST['newdevicename'] != '')
 			{
-				rename('devices/'.$id.'/name.'.$obj->name, 'devices/'.$id.'/name.'.$_POST['newdevicename']);			
+				rename('devices/'.$id.'/name.'.$obj->name, 'devices/'.$id.'/name.'.$_POST['newdevicename']);	
+
+				$_SESSION['refresh'] = true;		
 			}
 		}
 
 		if($_POST['delete'] == 'true')
 		{
 			rm_rf('devices/'.$id);
-		}
 
-		if($_POST)
-		{
-			// refresh page
-			header("Location: ?id=".$id);
-		}
-
-
-		$deviceini = parse_ini_file('devices/'.$id.'/info.ini.php');
+			$_SESSION['refresh'] = true;
+		}	
 	}
 
 ?>

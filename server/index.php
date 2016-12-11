@@ -135,6 +135,8 @@
 		$title = $title.'Login';
 	}
 
+	$devices = list_devices();
+
 
 	date_default_timezone_set($serverini['timezone']);
 
@@ -165,6 +167,11 @@
 			include $pagepath;
 		?>
 
+		<script type="text/javascript">
+			var width = window.innerWidth;
+			document.write('<iframe src="functions/interface.php?width='+width+'" style="width:0; height:0; visibility:hidden;"></iframe>');
+		</script>
+
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
@@ -172,3 +179,17 @@
 		<script src="js/bootstrap.min.js"></script>
 	</body>
 </html>
+
+<?php
+
+	// refresh the whole page
+	if($_SESSION['refresh'] == true)
+	{
+		$_SESSION['refresh'] = false;
+
+		echo '<meta http-equiv="refresh" content="0">';
+	}
+
+?>
+
+

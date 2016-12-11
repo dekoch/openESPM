@@ -53,8 +53,11 @@
 			mkdir($dir, 0777, true);
 		}
 
+		$cTemp = str_replace(',', '.', $_GET['ctemp']);
+		$fTemp = str_replace(',', '.', $_GET['ftemp']);
+		$humidity = str_replace(',', '.', $_GET['humidity']);
 
-		$data = $unixtime.','.$_GET['ctemp'].','.$_GET['ftemp'].','.$_GET['humidity']."\r\n";
+		$data = $unixtime.','.$cTemp.','.$fTemp.','.$humidity."\r\n";
 
 		$file = fopen($dir.'/'.date('d').'.csv', 'a') or die("can't open file");
 		fwrite($file, $data);

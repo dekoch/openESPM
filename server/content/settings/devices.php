@@ -66,9 +66,18 @@ Devices:</br>
 
 <?php
 
-	$devices = list_devices();
 	//print devices
 	foreach($devices as $dev)
+	{
+		echo '<a href="?id='.$dev->id.'" title=""><b>'.$dev->name.'</b> (ID: '.$dev->id.')</a></br>';
+	}
+
+	echo '<br>API Devices:<br>';
+
+	$apidevices = list_api_devices();
+
+	//print API devices
+	foreach($apidevices as $dev)
 	{
 		echo '<a href="?id='.$dev->id.'" title=""><b>'.$dev->name.'</b> (ID: '.$dev->id.')</a></br>';
 	}

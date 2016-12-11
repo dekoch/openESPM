@@ -10,7 +10,13 @@
 		{
 			if($_POST['interval'] != '')
 			{
-				$appini['interval'] = $_POST['interval'];				
+				$interval = $_POST['interval'];
+				$interval = htmlspecialchars($interval);
+
+				if(ctype_digit($interval))
+				{
+					$appini['interval'] = $interval;
+				}	
 			}
 
 			if($_POST['tempUnit'] != '')

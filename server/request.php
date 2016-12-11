@@ -26,7 +26,18 @@
 			$obj = new struDevice();
 			$obj = get_device_info($id);
 
-			include 'app/'.$obj->app.'/request.php';
+			if(is_dir('app/'.$obj->app))
+			{
+				include 'app/'.$obj->app.'/request.php';
+			}
+			else
+			{
+				echo 'App "'.$obj->app.'" is not present!
+				Please check your configuration.';
+
+				include_once 'functions/log.php';
+				write_error_log($id, 'server', 'App "'.$obj->app.'" is not present', $_SERVER['REQUEST_URI']);
+			}
 		}
 		else
 		{

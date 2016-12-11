@@ -16,15 +16,12 @@
 		<div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
 				<?php
-
-					$devices = list_devices();
 					//print devices
 					foreach($devices as $dev)
 					{
 						echo '<li><a href="?id='.$dev->id.'" title=""><b>'.$dev->name.'</b> '.$dev->app.'<br>'.
 								'(ID: '.$dev->id.')</a></li>';
 					}
-
 				?>
 			</ul> 
 		</div>
@@ -32,9 +29,17 @@
 			<?php
 				if($id != '')
 				{
-					echo '<h3 class="page-header">'.$obj->name.' (ID: '.$obj->id.')</h3>';
-					echo '<!-- app/'.$obj->app.'/control.php -->';
-					include 'app/'.$obj->app.'/control.php';
+					if(is_dir('devices/'.$id))
+					{
+						$pos = strpos($obj->app, 'API');
+						// don't show API devices
+						if ($pos === false)
+						{
+							echo '<h3 class="page-header">'.$obj->name.' (ID: '.$obj->id.')</h3>';
+							echo '<!-- app/'.$obj->app.'/control.php -->';
+							include 'app/'.$obj->app.'/control.php';
+						}
+					}
 				}
 			?>
 		</div>

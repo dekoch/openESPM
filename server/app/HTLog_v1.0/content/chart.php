@@ -9,8 +9,17 @@
 		$chartTime = '';
 		$chartTemp = '';
 		$lastTemp = 0;
+		$minTemp = 9999;
+		$averageTemp = 0;
+		$maxTemp = -9999;
+
 		$chartHumidity = '';
 		$lastHumidity = 0;
+		$minHumidity = 9999;
+		$averageHumidity = 0;
+		$maxHumidity = -9999;
+
+		$cnt = 0;
 
 		foreach ($array as $set)
 		{
@@ -31,8 +40,39 @@
 
 				$chartHumidity = $chartHumidity.$set[3].',';
 				$lastHumidity = $set[3];
-			}
+
+
+				if($lastTemp < $minTemp)
+				{
+					$minTemp = $lastTemp;
+				}
+
+				$averageTemp += $lastTemp;
+
+				if($lastTemp > $maxTemp)
+				{
+					$maxTemp = $lastTemp;
+				}
+
+
+				if($lastHumidity < $minHumidity)
+				{
+					$minHumidity = $lastHumidity;
+				}
+
+				$averageHumidity += $lastHumidity;
+
+				if($lastHumidity > $maxHumidity)
+				{
+					$maxHumidity = $lastHumidity;
+				}
+
+				$cnt += 1;
+			}	
 		}
+
+		$averageTemp = round($averageTemp / $cnt, 2);
+		$averageHumidity = round($averageHumidity / $cnt, 2);
 
 		// remove last ;
 		$chartTime = substr($chartTime, 0, strlen($chartTime) - 1);
@@ -56,7 +96,16 @@
 
 	var charJSPersonnalDefaultOptions = { decimalSeparator : "," , thousandSeparator : ".", roundNumber : "none", graphTitleFontSize: 2 };
 
-	defCanvasWidth=document.documentElement.clientWidth / 100 * 80;
+
+	if("<?php echo get_layout($_SESSION['width']); ?>" == "xs")
+	{
+		defCanvasWidth=document.documentElement.clientWidth;
+	}
+	else
+	{
+		defCanvasWidth=document.documentElement.clientWidth / 100 * 80;
+	}
+
 	defCanvasHeight=300;
 
 
@@ -123,12 +172,16 @@
 <script>
 
 	document.write("<canvas id=\"canvas_Line1\" height=\""+defCanvasHeight+"\" width=\""+defCanvasWidth+"\"></canvas>");
+	document.write("<?php echo 'min: '.$minTemp.' | avg: '.$averageTemp.' | max: '.$maxTemp; ?>");
+	document.write("<hr>");
 	document.write("<canvas id=\"canvas_Line2\" height=\""+defCanvasHeight+"\" width=\""+defCanvasWidth+"\"></canvas>");
+	document.write("<?php echo 'min: '.$minHumidity.' | avg: '.$averageHumidity.' | max: '.$maxHumidity; ?>");
 	window.onload = function() {
 
-
+	// Temperature
 	var myLine = new Chart(document.getElementById("canvas_Line1").getContext("2d")).Line(temperatureData,temperatureOpt);
 
+	// Humidity
 	var myLine = new Chart(document.getElementById("canvas_Line2").getContext("2d")).Line(humidityData,humidityOpt);
 }
 </script>

@@ -45,7 +45,7 @@
 	{
 		//path to directory to scan
 		$directory = 'devices/';
-		 
+ 
 		//get all files in specified directory
 		$dirs = glob($directory . '*');
 
@@ -61,7 +61,43 @@
 				$obj = new struDevice();
 				$obj = get_device_info($dir);
 
-				$res[] = $obj;
+				// don't list API devices
+				if(strlen(stristr($obj->app, 'API')) == 0)
+				{
+					$res[] = $obj;
+				}
+			}
+		}
+
+		return $res;
+	}
+
+
+	function list_api_devices()
+	{
+		//path to directory to scan
+		$directory = 'devices/';
+ 
+		//get all files in specified directory
+		$dirs = glob($directory . '*');
+
+		$res = array();
+		//print devices
+		foreach($dirs as $dir)
+		{
+			//check to see if the file is a directory
+			if(is_dir($dir))
+			{
+				$dir = str_replace('devices/', '', $dir);
+
+				$obj = new struDevice();
+				$obj = get_device_info($dir);
+
+				// list API devices
+				if(strlen(stristr($obj->app, 'API')) > 0)
+				{
+					$res[] = $obj;
+				}
 			}
 		}
 
@@ -133,6 +169,27 @@
 		$ini['lastseen'] = $date['0'];
 
 		write_php_ini($ini, 'devices/'.$id.'/info.ini.php');
+	}
+
+
+	function get_layout($width)
+	{
+		if($width < 768)
+		{
+			return 'xs';
+		}
+		else if($width <= 991)
+		{
+			return 'sm';
+		}
+		else if($width <= 1199)
+		{
+			return 'md';
+		}
+		else
+		{
+			return 'ld';
+		}
 	}
 
 ?>
