@@ -3,26 +3,28 @@
 	$appinipath = 'devices/'.$id.'/app.ini.php';
 	$appini = parse_ini_file($appinipath);
 
+	if($id == $_GET['id'])
+	{
+		$switch = $_GET['switch'];
 
-	$switch = $_GET['switch'];
+		if($switch == 'on')
+		{  
+			$appini['switch'] = 'on';
+		} 
+		else if($switch == 'off')
+		{  
+			$appini['switch'] = 'off';
+		}
 
-	if($switch == 'on')
-	{  
-		$appini['switch'] = 'on';
-	} 
-	else if($switch == 'off')
-	{  
-		$appini['switch'] = 'off';
+		write_php_ini($appini, $appinipath);
 	}
-
-	write_php_ini($appini, $appinipath);
 
 ?>
 
 <form action="" method="post">
-	<a href="?switch=on" class="btn btn-success btn-block btn-lg">Turn On</a>
+	<a href="?id=<?php echo $id; ?>&switch=on" class="btn btn-success btn-block btn-lg">Turn On</a>
 	<br>
-	<a href="?switch=off" class="led btn btn-danger btn-block btn-lg">Turn Off</a>
+	<a href="?id=<?php echo $id; ?>&switch=off" class="led btn btn-danger btn-block btn-lg">Turn Off</a>
 	<br>
 	<div class="light-status well" style="margin-top: 5px; text-align:center">
 		<?php

@@ -82,6 +82,7 @@
 
 ?>
 
+<p id="chart"></p>
 
 <SCRIPT src='./app/HTLog_v1.0/js/chart/ChartNew.js'></script>
 
@@ -97,15 +98,7 @@
 	var charJSPersonnalDefaultOptions = { decimalSeparator : "," , thousandSeparator : ".", roundNumber : "none", graphTitleFontSize: 2 };
 
 
-	if("<?php echo get_layout($_SESSION['width']); ?>" == "xs")
-	{
-		defCanvasWidth=document.documentElement.clientWidth;
-	}
-	else
-	{
-		defCanvasWidth=document.documentElement.clientWidth / 100 * 80;
-	}
-
+	defCanvasWidth=document.getElementById("chart").offsetWidth;
 	defCanvasHeight=300;
 
 
