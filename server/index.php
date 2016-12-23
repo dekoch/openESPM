@@ -89,13 +89,18 @@
 
 	if($_GET['menu'] == 'logout')
 	{
-		if((empty($_SESSION['serverini']) == false) && ($page != 'login')) 
+		if($_SESSION['signedin'] == 'true') 
 		{
-			$serverini['lastpage'] = $page;			
-			$serverini['lastcontent'] = $content;
-			$serverini['lastid'] = $id;
+			if((empty($_SESSION['serverini']) == false) && ($page != 'login')) 
+			{
+				$serverini = parse_ini_file('config/server.ini.php');
 
-			write_php_ini($serverini, 'config/server.ini.php');
+				$serverini['lastpage'] = $page;			
+				$serverini['lastcontent'] = $content;
+				$serverini['lastid'] = $id;
+
+				write_php_ini($serverini, 'config/server.ini.php');
+			}
 		}
 
 		session_destroy();
@@ -114,10 +119,10 @@
 
 	$pagepath = '';
 
-	if($page == 'home')
+	if($page == 'dashboard')
 	{  
-		$pagepath = 'content/home.php';
-		$title = $title.'Home';
+		$pagepath = 'content/dashboard.php';
+		$title = $title.'Dashboard';
 	}
 	else if($page == 'control')
 	{  

@@ -9,13 +9,13 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
           	</button>
-			<a class="navbar-brand" href="./index.php?page=home"><?php echo $serverini['servername'] ?></a>
+			<a class="navbar-brand" href="./index.php?page=dashboard"><?php echo $serverini['servername'] ?></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="?page=home" title="">Home</a></li>
+				<li<?php if($page == 'dashboard'){echo ' class="active"'; }?>><a href="?page=dashboard" title="">Dashboard</a></li>
 				<!-- Control -->
-				<li class="hidden-xs"><a href="?page=control" title="">Control</a></li>
+				<li class="hidden-xs<?php if($page == 'control'){echo ' active'; }?>"><a href="?page=control" title="">Control</a></li>
 				<li class="dropdown visible-xs">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Control<span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -31,7 +31,7 @@
 					</ul>
 				</li>
 				<!-- Settings -->
-				<li class="hidden-xs"><a href="?page=settings" title="">Settings</a></li>
+				<li class="hidden-xs<?php if($page == 'settings'){echo ' active'; }?>"><a href="?page=settings" title="">Settings</a></li>
 				<li class="dropdown visible-xs">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings<span class="caret"></span></a>
 					<ul class="dropdown-menu">

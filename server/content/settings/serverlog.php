@@ -53,12 +53,12 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>Time:</th>
-			<th>IP:</th>
-			<th>Device ID:</th>
-			<th>App:</th>
-			<th>Error:</th>
-			<th>Parameter:</th>
+			<th>Time</th>
+			<th>IP</th>
+			<th>Device ID</th>
+			<th>App</th>
+			<th>Error</th>
+			<th>Parameter</th>
 		</tr>
 	</thead>
 	<tbody>
