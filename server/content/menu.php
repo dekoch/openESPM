@@ -9,11 +9,11 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
           	</button>
-			<a class="navbar-brand" href="./index.php?page=home"><?php echo $serverini['servername'] ?></a>
+			<a class="navbar-brand" href="./index.php?page=dashboard"><?php echo $serverini['servername'] ?></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li<?php if($page == 'home'){echo ' class="active"'; }?>><a href="?page=home" title="">Home</a></li>
+				<li<?php if($page == 'dashboard'){echo ' class="active"'; }?>><a href="?page=dashboard" title="">Dashboard</a></li>
 				<!-- Control -->
 				<li class="hidden-xs<?php if($page == 'control'){echo ' active'; }?>"><a href="?page=control" title="">Control</a></li>
 				<li class="dropdown visible-xs">

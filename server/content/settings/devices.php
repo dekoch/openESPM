@@ -46,44 +46,80 @@ lastseen = ""
 ?>
 
 <form action="" method="post">
-	Application: <select id="cmbApp" name="app" >
-					<?php
-						foreach($apps as $app)
-						{
-							echo '<option value="'.$app.'">'.$app.'</option>';
-						}
-					?>
-				</select>
+	<table class="table table-condensed">
+		<thead>
+			<tr>
+				<th>Devicename</th>
+				<th>Application</th>
+				<th>ID</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+				//print devices
+				foreach($devices as $dev)
+				{
+					echo '<tr><td>'.$dev->name.'</td><td>'.$dev->app.'</td><td>'.$dev->id.'</td>';
+					echo '<td><a href="?id='.$dev->id.'" title="edit"><i class="fa fa-wrench" aria-hidden="true"></i></a></td></tr>';
+				}
+			?>
+		</tbody>
 
-	Devicename: <input type="text" name="devicename" />
-	
-	<button type="submit" name="add" value="true" class="btn btn-success">
-		<i class="fa fa-check-square" aria-hidden="true"></i> add
-	</button>
+		<thead>
+			<tr>
+				<th>API Devicename</th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+				$apidevices = list_api_devices();
+
+				//print API devices
+				foreach($apidevices as $dev)
+				{
+					echo '<tr><td>'.$dev->name.'</td><td>'.$dev->app.'</td><td>'.$dev->id.'</td>';
+					echo '<td><a href="?id='.$dev->id.'" title=""><i class="fa fa-wrench" aria-hidden="true"></i></a></td></tr>';
+				}
+			?>
+		</tbody>
+
+		<thead>
+			<tr>
+				<th>new Devicename</th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type="text" name="devicename" /></td>
+				<td>
+					<select id="cmbApp" name="app" >
+						<?php
+							foreach($apps as $app)
+							{
+								echo '<option value="'.$app.'">'.$app.'</option>';
+							}
+						?>
+					</select>
+				</td>
+				<td></td>
+				<td>
+					<button type="submit" name="add" value="true" title="add">
+						<i class="fa fa-plus" aria-hidden="true"></i>
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </form>
 
-Devices:</br>
-
 <?php
-
-	//print devices
-	foreach($devices as $dev)
-	{
-		echo '<a href="?id='.$dev->id.'" title=""><b>'.$dev->name.'</b> (ID: '.$dev->id.')</a></br>';
-	}
-
-	echo '<br>API Devices:<br>';
-
-	$apidevices = list_api_devices();
-
-	//print API devices
-	foreach($apidevices as $dev)
-	{
-		echo '<a href="?id='.$dev->id.'" title=""><b>'.$dev->name.'</b> (ID: '.$dev->id.')</a></br>';
-	}
-
-	echo '<br>';
-
 
 	if($id != '')
 	{

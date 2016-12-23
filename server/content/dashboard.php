@@ -3,11 +3,12 @@
 
 	$contentini = parse_ini_file('config/content.ini.php', true);
 
-	if($_POST['homeapply'] == 'true')
+	if($_POST['dashboardapply'] == 'true')
 	{
-		for ($i = 0; $i < count($contentini['home']); $i++)
+		for ($i = 0; $i < count($contentini['dashboard_id']); $i++)
 		{
-			$contentini['home'][$i] = $_POST['ContentLine'.$i];
+			$contentini['dashboard_id'][$i] = $_POST['ContentLineID'.$i];
+			$contentini['dashboard_text'][$i] = $_POST['ContentLineText'.$i];
 		}
 
 		write_php_ini($contentini, 'config/content.ini.php');
@@ -16,9 +17,9 @@
 
 	$buttontargets = '';
 
-	for ($i = 0; $i < count($contentini['home']); $i++)
+	for ($i = 0; $i < count($contentini['dashboard_id']); $i++)
 	{
-		$buttontargets = $buttontargets.',#homeline'.$i;
+		$buttontargets = $buttontargets.',#dashboardline'.$i;
 	}
 
 ?>
@@ -30,12 +31,12 @@
 				<table>
   					<tr>
 						<th>
-							<div id="homeapply" class="collapse">
-								<button type="submit" name="homeapply" value="true" class="btn btn-success">apply</button>
+							<div id="dashboardapply" class="collapse">
+								<button type="submit" name="dashboardapply" value="true" class="btn btn-success">apply</button>
 							</div>
 						</th>
 						<th>
-							<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#homeapply<?php echo $buttontargets; ?>">
+							<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#dashboardapply<?php echo $buttontargets; ?>">
 								<i class="fa fa-wrench" aria-hidden="true"></i>
 							</button>
 						</th>
@@ -44,12 +45,19 @@
 			</div>
 		  	<div>
 				<?php
-					$homeLine = 0;
+					$dashboardline = 0;
 
-					foreach($contentini['home'] as $content)
+					foreach($contentini['dashboard_id'] as $content)
 					{
-						echo '<div id="homeline'.$homeLine.'" class="collapse">';
-							echo '<select id="cmbContentLine'.$homeLine.'" name="ContentLine'.$homeLine.'">';
+						if($contentini['dashboard_text'][$dashboardline] != '')
+						{
+							echo '<h3 class="page-header">'.$contentini['dashboard_text'][$dashboardline].'</h3>';
+						}
+
+						echo '<div id="dashboardline'.$dashboardline.'" class="collapse">';
+							echo '<input type="text" name="ContentLineText'.$dashboardline.'" value="'.$contentini['dashboard_text'][$dashboardline].'" /><br>';
+
+							echo '<select id="cmbContentLineID'.$dashboardline.'" name="ContentLineID'.$dashboardline.'">';
 
 								echo '<option value="" ';
 								if($content == '')
@@ -79,9 +87,10 @@
 							echo '</select>';
 						echo '</div><br>';
 
+						// show selected content
 						if($content == 'serverstats')
 						{  
-							include 'content/home/serverstats.php';
+							include 'content/dashboard/serverstats.php';
 						}
 						else
 						{
@@ -94,19 +103,14 @@
 									$obj = new struDevice();
 									$obj = get_device_info($id);
 
-									echo '<h3 class="page-header">'.$obj->name.' (ID: '.$obj->id.')</h3>';
+									echo '<h4>'.$obj->name.' (ID: '.$obj->id.')</h4>';
 									echo '<!-- app/'.$obj->app.'/control.php -->';
 									include 'app/'.$obj->app.'/control.php';
 								}
 							}
 						}
 
-						if($content != '')
-						{
-							echo '<hr>';
-						}
-
-						$homeLine += 1;
+						$dashboardline += 1;
 					}
 				?>
 			</div>

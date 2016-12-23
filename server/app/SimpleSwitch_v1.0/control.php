@@ -19,31 +19,33 @@
 		write_php_ini($appini, $appinipath);
 	}
 
+
+	if($appini['switch'] == 'on')
+	{
+		$switchtext = 'on';
+
+		$switchbutton = '<a href="?id='.$id.'&switch=off"><i class="fa fa-toggle-on fa-2x" aria-hidden="true"></i></a>';
+	}
+	else
+	{
+		$switchtext = 'off';
+
+		$switchbutton = '<a href="?id='.$id.'&switch=on"><i class="fa fa-toggle-off fa-2x" aria-hidden="true"></i></a>';
+	}
+
+
 ?>
 
-<form action="" method="post">
-	<a href="?id=<?php echo $id; ?>&switch=on" class="btn btn-success btn-block btn-lg">Turn On</a>
-	<br>
-	<a href="?id=<?php echo $id; ?>&switch=off" class="led btn btn-danger btn-block btn-lg">Turn Off</a>
-	<br>
-	<div class="light-status well" style="margin-top: 5px; text-align:center">
-		<?php
-			if($appini['switch'] == 'on')
-			{
-				echo 'ON';
-			}
-			else if ($appini['switch'] == 'off')
-			{
-				echo 'OFF';
-			}
-			else
-			{
-				echo 'Do something.';
-			}
-		?>
-	</div>
-
-</form>	
-
+<table>
+  <tr>
+	<td width="30"><h4><p class="text-right"><?php echo $switchtext; ?></p></h4></td>
+	<td width="10"></td>
+	<td>
+		<form action="" method="post">
+			<?php echo $switchbutton; ?>
+		</form>
+	</td>
+  </tr>
+</table>
 
 

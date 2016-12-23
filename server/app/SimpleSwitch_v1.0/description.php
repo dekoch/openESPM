@@ -11,7 +11,7 @@
 
 	$appUrl = '';
 
-	$appChangelog = 'v1.0.1<br>+submit ID in control mode<br>
+	$appChangelog = 'v1.0.1<br>+new design<br>+submit ID in control mode<br>
 					<br>
 					v1.0<br>first version';
 

@@ -119,10 +119,10 @@
 
 	$pagepath = '';
 
-	if($page == 'home')
+	if($page == 'dashboard')
 	{  
-		$pagepath = 'content/home.php';
-		$title = $title.'Home';
+		$pagepath = 'content/dashboard.php';
+		$title = $title.'Dashboard';
 	}
 	else if($page == 'control')
 	{  
