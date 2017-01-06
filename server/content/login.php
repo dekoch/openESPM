@@ -7,7 +7,9 @@
 		echo 'Password is valid!';
 		$_SESSION['signedin'] = 'true';
 
-		header("Location: ?page=dashboard");
+		header('Location: ?page='.$serverini['lastpage'].
+							'&content='.$serverini['lastcontent'].
+							'&id='.$serverini['lastid']);
 	}
 
 	// check password
