@@ -82,7 +82,7 @@ lastseen = ""
 				foreach($apidevices as $dev)
 				{
 					echo '<tr><td>'.$dev->name.'</td><td>'.$dev->app.'</td><td>'.$dev->id.'</td>';
-					echo '<td><a href="?id='.$dev->id.'" title=""><i class="fa fa-wrench" aria-hidden="true"></i></a></td></tr>';
+					echo '<td><a href="?id='.$dev->id.'" title="edit"><i class="fa fa-wrench" aria-hidden="true"></i></a></td></tr>';
 				}
 			?>
 		</tbody>

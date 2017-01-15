@@ -6,7 +6,7 @@
 <br>
 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#changelog<?php echo $count; ?>">Changelog</button>
 <div id="changelog<?php echo $count; ?>" class="collapse">
-	v1.3<br>fix: if Login URL is used, navigate to last saved page<br>
+	v1.3<br>+option to protect request with private key<br>fix: if Login URL is used, navigate to last saved page<br>
 	<br>
 	v1.2<br>+customizable home page<br>+server statistics<br>+highlight selected menu item<br>
 	<br>
